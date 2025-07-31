@@ -5,7 +5,7 @@ const LandingPage: React.FC = () => {
   const [, setLocation] = useLocation();
 
   const handleStartQuiz = () => {
-    setLocation('/quiz/');
+    setLocation('/quiz');
   };
 
   return (

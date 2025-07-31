@@ -8,7 +8,8 @@ function App() {
     <Router>
       <div className="min-h-screen">
         <Route path="/" component={LandingPage} />
-        <Route path="/quiz/:path*" component={QuizFlow} />
+        <Route path="/quiz" component={QuizFlow} />
+        <Route path="/quiz/:step" component={QuizFlow} />
         <Route path="/chat" component={ChatInterface} />
       </div>
     </Router>

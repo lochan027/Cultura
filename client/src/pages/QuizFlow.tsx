@@ -74,7 +74,7 @@ const QuizFlow: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
+    <div className="min-h-screen bg-gradient-to-br from-cultura-purple-50 via-cultura-pink-50 to-cultura-orange-50">
       {getQuizComponent()}
     </div>
   );
