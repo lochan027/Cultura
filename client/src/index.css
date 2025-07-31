@@ -4,42 +4,106 @@
 
 @layer base {
   :root {
-    /* Cultura custom properties */
-    --cultura-primary-50: 252 231 243;
-    --cultura-primary-100: 250 209 232;
-    --cultura-primary-200: 244 163 207;
-    --cultura-primary-300: 236 117 176;
-    --cultura-primary-400: 219 39 119;
-    --cultura-primary-500: 190 24 93;
-    --cultura-primary-600: 157 23 77;
-    --cultura-primary-700: 131 24 67;
-    --cultura-primary-800: 112 26 59;
-    --cultura-primary-900: 96 26 52;
+    /* Enhanced Cultura Design System */
+    --cultura-purple-50: 250 245 255;
+    --cultura-purple-100: 243 232 255;
+    --cultura-purple-200: 233 213 255;
+    --cultura-purple-300: 196 181 253;
+    --cultura-purple-400: 167 139 250;
+    --cultura-purple-500: 139 92 246;
+    --cultura-purple-600: 124 58 237;
+    --cultura-purple-700: 109 40 217;
+    --cultura-purple-800: 91 33 182;
+    --cultura-purple-900: 76 29 149;
     
-    --cultura-accent-50: 240 249 255;
-    --cultura-accent-100: 224 242 254;
-    --cultura-accent-200: 186 230 253;
-    --cultura-accent-300: 125 211 252;
-    --cultura-accent-400: 56 189 248;
-    --cultura-accent-500: 14 165 233;
-    --cultura-accent-600: 2 132 199;
-    --cultura-accent-700: 3 105 161;
-    --cultura-accent-800: 7 89 133;
-    --cultura-accent-900: 12 74 110;
+    --cultura-pink-50: 253 242 248;
+    --cultura-pink-100: 252 231 243;
+    --cultura-pink-200: 251 207 232;
+    --cultura-pink-300: 249 168 212;
+    --cultura-pink-400: 244 114 182;
+    --cultura-pink-500: 236 72 153;
+    --cultura-pink-600: 219 39 119;
+    --cultura-pink-700: 190 24 93;
+    --cultura-pink-800: 157 23 77;
+    --cultura-pink-900: 131 24 67;
     
-    --cultura-neutral-50: 249 250 251;
-    --cultura-neutral-100: 243 244 246;
-    --cultura-neutral-200: 229 231 235;
-    --cultura-neutral-300: 209 213 219;
-    --cultura-neutral-400: 156 163 175;
-    --cultura-neutral-500: 107 114 128;
-    --cultura-neutral-600: 75 85 99;
-    --cultura-neutral-700: 55 65 81;
-    --cultura-neutral-800: 31 41 55;
-    --cultura-neutral-900: 17 24 39;
+    --cultura-orange-50: 255 247 237;
+    --cultura-orange-100: 255 237 213;
+    --cultura-orange-200: 254 215 170;
+    --cultura-orange-300: 253 186 116;
+    --cultura-orange-400: 251 146 60;
+    --cultura-orange-500: 249 115 22;
+    --cultura-orange-600: 234 88 12;
+    --cultura-orange-700: 194 65 12;
+    --cultura-orange-800: 154 52 18;
+    --cultura-orange-900: 124 45 18;
     
-    --cultura-gradient-from: 147 51 234;
-    --cultura-gradient-via: 219 39 119;
-    --cultura-gradient-to: 236 72 153;
+    --cultura-blue-50: 239 246 255;
+    --cultura-blue-100: 219 234 254;
+    --cultura-blue-200: 191 219 254;
+    --cultura-blue-300: 147 197 253;
+    --cultura-blue-400: 96 165 250;
+    --cultura-blue-500: 59 130 246;
+    --cultura-blue-600: 37 99 235;
+    --cultura-blue-700: 29 78 216;
+    --cultura-blue-800: 30 64 175;
+    --cultura-blue-900: 30 58 138;
+    
+    --cultura-neutral-50: 250 250 250;
+    --cultura-neutral-100: 245 245 245;
+    --cultura-neutral-200: 229 229 229;
+    --cultura-neutral-300: 212 212 212;
+    --cultura-neutral-400: 163 163 163;
+    --cultura-neutral-500: 115 115 115;
+    --cultura-neutral-600: 82 82 82;
+    --cultura-neutral-700: 64 64 64;
+    --cultura-neutral-800: 38 38 38;
+    --cultura-neutral-900: 23 23 23;
+    
+    /* Modern gradients */
+    --cultura-gradient-sunset: linear-gradient(135deg, rgb(var(--cultura-orange-400)), rgb(var(--cultura-pink-500)));
+    --cultura-gradient-ocean: linear-gradient(135deg, rgb(var(--cultura-blue-400)), rgb(var(--cultura-purple-500)));
+    --cultura-gradient-forest: linear-gradient(135deg, rgb(var(--cultura-purple-500)), rgb(var(--cultura-pink-500)));
+    --cultura-gradient-aurora: linear-gradient(135deg, rgb(var(--cultura-purple-400)), rgb(var(--cultura-pink-400)), rgb(var(--cultura-orange-400)));
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+  
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite 1s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .text-gradient {
+    background: var(--cultura-gradient-forest);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

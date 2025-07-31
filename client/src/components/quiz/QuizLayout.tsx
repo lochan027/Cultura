@@ -44,67 +44,70 @@ const QuizLayout: React.FC<QuizLayoutProps> = ({
   };
 
   return (
-    <div className="min-h-screen p-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 relative">
-      {/* Background elements */}
+    <div className="min-h-screen p-4 bg-gradient-to-br from-cultura-purple-50 via-cultura-pink-50 to-cultura-orange-50 relative">
+      {/* Enhanced floating background */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-cultura-purple-300/15 to-cultura-pink-300/15 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-br from-cultura-pink-300/15 to-cultura-orange-300/15 rounded-full blur-3xl animate-float-delayed"></div>
       </div>
       
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Enhanced Header */}
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={handleBack}
-            className="flex items-center gap-2 text-white/70 hover:text-white transition-colors backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full border border-white/20"
+            className="flex items-center gap-2 text-cultura-neutral-600 hover:text-cultura-purple-600 transition-colors glass-effect px-6 py-3 rounded-full border border-white/30 hover:scale-105 transition-all duration-300"
           >
             <ArrowLeft className="w-4 h-4" />
             Back
           </button>
           
           <div className="flex-1 mx-8">
-            <div className="bg-white/20 rounded-full h-3 backdrop-blur-sm">
+            <div className="bg-cultura-neutral-200 rounded-full h-4 backdrop-blur-sm shadow-inner">
               <div 
-                className="bg-gradient-to-r from-purple-400 to-pink-400 h-3 rounded-full transition-all duration-500 shadow-lg"
+                className="bg-gradient-to-r from-cultura-purple-500 via-cultura-pink-500 to-cultura-orange-500 h-4 rounded-full transition-all duration-1000 shadow-lg"
                 style={{ width: `${(step / totalSteps) * 100}%` }}
               />
             </div>
-            <p className="text-center text-sm text-white/80 mt-2 font-medium">
-              Step {step} of {totalSteps}
+            <p className="text-center text-sm text-cultura-neutral-600 mt-3 font-semibold">
+              {step} of {totalSteps} • Almost there! 🎉
             </p>
           </div>
           
-          <div className="w-16" /> {/* Spacer for symmetry */}
+          <div className="w-20" />
         </div>
 
-        {/* Content */}
+        {/* Enhanced Content Header */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+          <h1 className="text-4xl md:text-6xl font-black text-gradient mb-6 leading-tight">
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-sm">
+          <p className="text-xl md:text-2xl text-cultura-neutral-700 max-w-3xl mx-auto font-medium">
             {subtitle}
           </p>
         </div>
 
-        {/* Quiz Content */}
-        <div className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl p-8 mb-8 border border-white/20">
+        {/* Enhanced Quiz Content */}
+        <div className="glass-effect rounded-3xl shadow-2xl p-8 mb-8 border-2 border-white/30">
           {children}
         </div>
 
-        {/* Navigation */}
+        {/* Enhanced Navigation */}
         <div className="flex justify-center">
           <button
             onClick={onNext}
             disabled={!canProceed}
-            className={`inline-flex items-center gap-3 px-10 py-5 rounded-full text-xl font-bold transition-all duration-500 ${
+            className={`group relative inline-flex items-center gap-4 px-12 py-6 rounded-full text-xl font-bold transition-all duration-500 overflow-hidden ${
               canProceed
-                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 transform hover:scale-110 shadow-xl hover:shadow-purple-500/25'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-50'
+                ? 'bg-gradient-to-r from-cultura-purple-600 via-cultura-pink-600 to-cultura-orange-500 text-white hover:shadow-2xl hover:shadow-cultura-purple-500/30 transform hover:scale-105'
+                : 'bg-cultura-neutral-300 text-cultura-neutral-500 cursor-not-allowed opacity-60'
             }`}
           >
-            {nextButtonText}
-            <ArrowRight className="w-5 h-5" />
+            {canProceed && (
+              <div className="absolute inset-0 bg-gradient-to-r from-cultura-pink-600 via-cultura-orange-500 to-cultura-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            )}
+            <span className="relative z-10">{nextButtonText}</span>
+            <ArrowRight className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
         </div>
       </div>

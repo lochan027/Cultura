@@ -72,8 +72,8 @@ const MoviesQuiz: React.FC<MoviesQuizProps> = ({ onNext, currentSelections }) =>
             onClick={() => toggleMovie(movie.id)}
             className={`relative cursor-pointer transform transition-all duration-300 hover:scale-105 group ${
               selectedMovies.includes(movie.id)
-                ? 'ring-4 ring-cultura-gradient-from shadow-xl shadow-cultura-gradient-from/30 scale-105'
-                : 'hover:shadow-lg hover:shadow-cultura-primary-200/20'
+                ? 'ring-4 ring-cultura-purple-500 shadow-xl shadow-cultura-purple-500/30 scale-105'
+                : 'hover:shadow-lg hover:shadow-cultura-purple-200/20'
             }">
 
             <div className="aspect-[2/3] bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl overflow-hidden shadow-lg">
