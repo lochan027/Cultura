@@ -67,22 +67,27 @@ const FoodQuiz: React.FC<FoodQuizProps> = ({ onNext, currentSelections }) => {
             onClick={() => toggleFood(food.id)}
             className={`relative cursor-pointer transform transition-all duration-300 hover:scale-105 group ${
               selectedFoods.includes(food.id)
-                ? 'ring-4 ring-cultura-purple-500 shadow-xl shadow-cultura-purple-500/30 scale-105'
+                ? 'scale-105'
                 : 'hover:shadow-lg hover:shadow-cultura-purple-200/20'
             }`}
           >
-            <div className="aspect-square bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl overflow-hidden mb-3 shadow-lg">
+            <div className="aspect-square bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl overflow-hidden mb-3 shadow-lg relative">
               <img
                 src={food.image}
                 alt={food.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
               {selectedFoods.includes(food.id) && (
-                <div className="absolute inset-0 bg-gradient-to-br from-cultura-purple-600/90 to-cultura-pink-600/90 flex items-center justify-center backdrop-blur-sm">
-                  <div className="bg-white rounded-full p-3 shadow-lg animate-pulse">
-                    <Check className="w-6 h-6 text-cultura-purple-600" />
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-br from-cultura-purple-600/80 to-cultura-pink-600/80 flex items-center justify-center">
+                    <div className="bg-white rounded-full p-3 shadow-lg transform scale-110 animate-pulse">
+                      <Check className="w-8 h-8 text-cultura-purple-600" />
+                    </div>
                   </div>
-                </div>
+                  <div className="absolute top-2 right-2 bg-gradient-to-r from-cultura-purple-600 to-cultura-pink-600 rounded-full p-1">
+                    <Check className="w-4 h-4 text-white" />
+                  </div>
+                </>
               )}
             </div>
             <h3 className="text-lg font-bold text-gray-800 text-center">
