@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles, Share2, Heart, MessageCircle, Loader } from 'lucide-react';
+import { Send, Bot, User, Sparkles, Share2, Heart, MessageCircle, Loader, ArrowLeft } from 'lucide-react';
+import { useLocation } from 'wouter';
 import ShareProfileCard from '../components/ShareProfileCard';
 
 interface Message {
@@ -23,6 +24,7 @@ const ChatInterface: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [, setLocation] = useLocation();
 
   // Get cultural profile from session storage
   const getCulturalProfile = () => {
@@ -123,6 +125,13 @@ const ChatInterface: React.FC = () => {
       <div className="p-6 border-b border-cultura-neutral-200 glass-effect">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
+            <button
+              onClick={() => setLocation('/quiz/results')}
+              className="flex items-center gap-2 glass-effect px-3 py-2 rounded-full text-cultura-purple-600 hover:text-cultura-pink-600 transition-all duration-300 hover:scale-105 border border-white/30"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="font-semibold">Back</span>
+            </button>
             <div className="w-14 h-14 bg-gradient-to-r from-cultura-purple-600 to-cultura-pink-600 rounded-full flex items-center justify-center shadow-lg">
               <Sparkles className="w-7 h-7 text-white" />
             </div>

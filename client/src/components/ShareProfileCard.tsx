@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Share2, Download, Copy, Check, Sparkles, Film, Music, Shirt, UtensilsCrossed, MapPin } from 'lucide-react';
+import { X, Share2, Download, Copy, Check, Sparkles, Film, Music, Shirt, UtensilsCrossed, MapPin, User } from 'lucide-react';
 import { EnrichedTasteProfile } from '../types/taste';
 
 interface ShareProfileCardProps {
@@ -9,6 +9,7 @@ interface ShareProfileCardProps {
 
 const ShareProfileCard: React.FC<ShareProfileCardProps> = ({ enrichedProfile, onClose }) => {
   const [copied, setCopied] = useState(false);
+  const [userName, setUserName] = useState('');
 
   const getDomainIcon = (domain: string) => {
     switch (domain) {
@@ -33,7 +34,8 @@ const ShareProfileCard: React.FC<ShareProfileCardProps> = ({ enrichedProfile, on
         travel: enrichedProfile.travel.slice(0, 2)
       }
     };
-    return `🌟 My Cultural DNA by Cultura
+    const namePrefix = userName ? `🌟 ${userName}'s Cultural DNA by Cultura` : `🌟 My Cultural DNA by Cultura`;
+    return `${namePrefix}
 
 🎭 Taste Archetype: ${cardData.archetype}
 
@@ -80,7 +82,13 @@ Discover your cultural DNA at cultura-app.com`;
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="p-6 text-center border-b border-cultura-neutral-200">
+        <div className="p-6 text-center border-b border-cultura-neutral-200 relative">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 p-2 text-cultura-neutral-400 hover:text-cultura-neutral-600 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
           <h2 className="text-2xl font-black text-gradient mb-2">Share Your Cultural DNA</h2>
           <p className="text-cultura-neutral-600">Show off your unique taste profile!</p>
         </div>
@@ -128,6 +136,23 @@ Discover your cultural DNA at cultura-app.com`;
             <div className="mt-4 pt-4 border-t border-white/20 text-center text-xs opacity-80">
               Discover your cultural DNA at cultura-app.com
             </div>
+          </div>
+        </div>
+
+        {/* Optional Name Input */}
+        <div className="px-6 pb-4">
+          <label className="block text-sm font-semibold text-cultura-neutral-700 mb-2">
+            Add your name (optional):
+          </label>
+          <div className="relative">
+            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-cultura-neutral-400" />
+            <input
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              placeholder="Your name"
+              className="w-full pl-10 pr-4 py-3 glass-effect rounded-xl border border-white/30 focus:outline-none focus:ring-2 focus:ring-cultura-purple-500 text-cultura-neutral-800 placeholder-cultura-neutral-400"
+            />
           </div>
         </div>
 

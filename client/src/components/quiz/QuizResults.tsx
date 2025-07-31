@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'wouter';
-import { Sparkles, MessageCircle, Loader } from 'lucide-react';
+import { Sparkles, MessageCircle, Loader, Share2 } from 'lucide-react';
 import { TasteProfile, EnrichedTasteProfile } from '../../types/taste';
 import CulturalDNACard from '../CulturalDNACard';
+import ShareProfileCard from '../ShareProfileCard';
 
 interface QuizResultsProps {
   tasteProfile: TasteProfile;
@@ -11,6 +12,7 @@ interface QuizResultsProps {
 const QuizResults: React.FC<QuizResultsProps> = ({ tasteProfile }) => {
   const [enrichedProfile, setEnrichedProfile] = useState<EnrichedTasteProfile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showShareModal, setShowShareModal] = useState(false);
   const [, setLocation] = useLocation();
 
   useEffect(() => {
@@ -95,18 +97,35 @@ const QuizResults: React.FC<QuizResultsProps> = ({ tasteProfile }) => {
             <CulturalDNACard enrichedProfile={enrichedProfile} />
             
             <div className="text-center mt-12">
-              <button
-                onClick={handleStartChat}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:from-purple-700 hover:to-pink-700 transform hover:scale-110 transition-all duration-500 shadow-2xl hover:shadow-purple-500/25"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Chat with Cultura
-              </button>
-              <p className="text-sm text-white/70 mt-4 drop-shadow-sm">
-                Ask questions, get recommendations, or explore your taste connections
+              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-6">
+                <button
+                  onClick={handleStartChat}
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:from-purple-700 hover:to-pink-700 transform hover:scale-110 transition-all duration-500 shadow-2xl hover:shadow-purple-500/25"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  Chat with Cultura
+                </button>
+                
+                <button
+                  onClick={() => setShowShareModal(true)}
+                  className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-lg text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white/30 transform hover:scale-110 transition-all duration-500 shadow-2xl border border-white/30"
+                >
+                  <Share2 className="w-5 h-5" />
+                  Share Profile
+                </button>
+              </div>
+              <p className="text-sm text-white/70 drop-shadow-sm">
+                Chat for recommendations or share your cultural DNA with friends
               </p>
             </div>
           </>
+        )}
+
+        {showShareModal && enrichedProfile && (
+          <ShareProfileCard
+            enrichedProfile={enrichedProfile}
+            onClose={() => setShowShareModal(false)}
+          />
         )}
       </div>
     </div>
