@@ -67,8 +67,8 @@ const FashionQuiz: React.FC<FashionQuizProps> = ({ onNext, currentSelections }) 
             onClick={() => toggleStyle(style.id)}
             className={`relative cursor-pointer transform transition-all duration-300 hover:scale-105 group ${
               selectedStyles.includes(style.id)
-                ? 'ring-4 ring-cultura-primary-500 shadow-xl shadow-cultura-primary-500/30 scale-105'
-                : 'hover:shadow-lg hover:shadow-cultura-primary-200/20'
+                ? 'ring-4 ring-cultura-purple-500 shadow-xl shadow-cultura-purple-500/30 scale-105'
+                : 'hover:shadow-lg hover:shadow-cultura-purple-200/20'
             }`}
           >
             <div className="aspect-[3/4] bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl overflow-hidden shadow-lg">
@@ -78,9 +78,9 @@ const FashionQuiz: React.FC<FashionQuizProps> = ({ onNext, currentSelections }) 
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
               {selectedStyles.includes(style.id) && (
-                <div className="absolute inset-0 bg-gradient-to-br from-cultura-primary-600/90 to-cultura-accent-600/90 flex items-center justify-center backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-br from-cultura-purple-600/90 to-cultura-pink-600/90 flex items-center justify-center backdrop-blur-sm">
                   <div className="bg-white rounded-full p-3 shadow-lg animate-pulse">
-                    <Check className="w-6 h-6 text-cultura-primary-600" />
+                    <Check className="w-6 h-6 text-cultura-purple-600" />
                   </div>
                 </div>
               )}
@@ -88,7 +88,7 @@ const FashionQuiz: React.FC<FashionQuizProps> = ({ onNext, currentSelections }) 
             <h3 className="mt-3 text-sm font-semibold text-gray-800 text-center leading-tight">
               {style.title}
             </h3>
-            <p className="text-xs text-cultura-primary-600 text-center font-medium">{style.category}</p>
+            <p className="text-xs text-cultura-purple-600 text-center font-medium">{style.category}</p>
           </div>
         ))}
       </div>
