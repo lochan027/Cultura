@@ -1,9 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { Play, ArrowLeft } from 'lucide-react';
 
 const QuizStart: React.FC = () => {
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative">
@@ -15,7 +14,7 @@ const QuizStart: React.FC = () => {
       
       <div className="max-w-2xl mx-auto text-center">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => setLocation('/')}
           className="absolute top-6 left-6 flex items-center gap-2 text-white/70 hover:text-white transition-colors backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -50,7 +49,7 @@ const QuizStart: React.FC = () => {
           </div>
 
           <button
-            onClick={() => navigate('/quiz/movies')}
+            onClick={() => setLocation('/quiz/movies')}
             className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:from-purple-700 hover:to-pink-700 transform hover:scale-110 transition-all duration-500 shadow-xl hover:shadow-purple-500/25"
           >
             <Play className="w-5 h-5" />

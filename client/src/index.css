@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cultura custom properties */
+    --cultura-primary-50: 252 231 243;
+    --cultura-primary-100: 250 209 232;
+    --cultura-primary-200: 244 163 207;
+    --cultura-primary-300: 236 117 176;
+    --cultura-primary-400: 219 39 119;
+    --cultura-primary-500: 190 24 93;
+    --cultura-primary-600: 157 23 77;
+    --cultura-primary-700: 131 24 67;
+    --cultura-primary-800: 112 26 59;
+    --cultura-primary-900: 96 26 52;
+    
+    --cultura-accent-50: 240 249 255;
+    --cultura-accent-100: 224 242 254;
+    --cultura-accent-200: 186 230 253;
+    --cultura-accent-300: 125 211 252;
+    --cultura-accent-400: 56 189 248;
+    --cultura-accent-500: 14 165 233;
+    --cultura-accent-600: 2 132 199;
+    --cultura-accent-700: 3 105 161;
+    --cultura-accent-800: 7 89 133;
+    --cultura-accent-900: 12 74 110;
+    
+    --cultura-neutral-50: 249 250 251;
+    --cultura-neutral-100: 243 244 246;
+    --cultura-neutral-200: 229 231 235;
+    --cultura-neutral-300: 209 213 219;
+    --cultura-neutral-400: 156 163 175;
+    --cultura-neutral-500: 107 114 128;
+    --cultura-neutral-600: 75 85 99;
+    --cultura-neutral-700: 55 65 81;
+    --cultura-neutral-800: 31 41 55;
+    --cultura-neutral-900: 17 24 39;
+    
+    --cultura-gradient-from: 147 51 234;
+    --cultura-gradient-via: 219 39 119;
+    --cultura-gradient-to: 236 72 153;
+  }
+}

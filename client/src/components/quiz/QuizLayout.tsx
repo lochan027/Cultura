@@ -1,5 +1,4 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface QuizLayoutProps {
@@ -25,15 +24,22 @@ const QuizLayout: React.FC<QuizLayoutProps> = ({
   canProceed,
   nextButtonText = 'Continue'
 }) => {
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   const handleBack = () => {
     if (onBack) {
       onBack();
     } else if (step === 1) {
-      navigate('/quiz');
+      setLocation('/quiz');
     } else {
-      navigate(-1);
+      // Navigate to previous step based on current step
+      const steps = ['', 'movies', 'music', 'fashion', 'food', 'travel', 'results'];
+      const currentStep = step - 1;
+      if (currentStep > 0) {
+        setLocation(`/quiz/${steps[currentStep - 1]}`);
+      } else {
+        setLocation('/quiz');
+      }
     }
   };
 

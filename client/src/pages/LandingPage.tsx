@@ -1,12 +1,11 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { Sparkles, ArrowRight } from 'lucide-react';
 
 const LandingPage: React.FC = () => {
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   const handleStartQuiz = () => {
-    navigate('/quiz');
+    setLocation('/quiz');
   };
 
   return (

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation } from 'wouter';
 import { ArrowRight } from 'lucide-react';
 import { QuizOption } from '../../types/taste';
 import QuizLayout from './QuizLayout';
@@ -36,7 +36,7 @@ interface MoviesQuizProps {
 const MoviesQuiz: React.FC<MoviesQuizProps> = ({ onNext, currentSelections }) => {
   const [selectedMovies, setSelectedMovies] = useState<string[]>(currentSelections);
   const [showAll, setShowAll] = useState(false);
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   const displayedMovies = showAll ? movieOptions : movieOptions.slice(0, 8);
 
@@ -52,7 +52,7 @@ const MoviesQuiz: React.FC<MoviesQuizProps> = ({ onNext, currentSelections }) =>
 
   const handleNext = () => {
     onNext(selectedMovies);
-    navigate('/quiz/music');
+    setLocation('/quiz/music');
   };
 
   return (

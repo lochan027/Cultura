@@ -1,4 +1,3 @@
-import React from 'react';
 import { EnrichedTasteProfile } from '../types/taste';
 import { Film, Music, Shirt, UtensilsCrossed, MapPin, Sparkles } from 'lucide-react';
 
@@ -72,7 +71,7 @@ const CulturalDNACard: React.FC<CulturalDNACardProps> = ({ enrichedProfile }) =>
                   {from} → {to}
                 </h4>
                 <div className="flex flex-wrap gap-1">
-                  {insights.slice(0, 3).map((insight, index) => (
+                  {insights.slice(0, 3).map((insight: string, index: number) => (
                     <span key={index} className="bg-white text-gray-700 px-3 py-1 rounded-full text-xs font-medium shadow-sm">
                       {insight}
                     </span>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation } from 'wouter';
 import { Check, ArrowRight } from 'lucide-react';
 import { QuizOption } from '../../types/taste';
 import QuizLayout from './QuizLayout';
@@ -31,7 +31,7 @@ interface FoodQuizProps {
 const FoodQuiz: React.FC<FoodQuizProps> = ({ onNext, currentSelections }) => {
   const [selectedFoods, setSelectedFoods] = useState<string[]>(currentSelections);
   const [showAll, setShowAll] = useState(false);
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   const displayedFoods = showAll ? foodOptions : foodOptions.slice(0, 8);
 
@@ -47,7 +47,7 @@ const FoodQuiz: React.FC<FoodQuizProps> = ({ onNext, currentSelections }) => {
 
   const handleNext = () => {
     onNext(selectedFoods);
-    navigate('/quiz/travel');
+    setLocation('/quiz/travel');
   };
 
   return (

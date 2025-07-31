@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'wouter';
 import { Send, ArrowLeft, Bot, User } from 'lucide-react';
 import { EnrichedTasteProfile } from '../types/taste';
 import CulturalDNACard from '../components/CulturalDNACard';
@@ -12,18 +12,18 @@ interface Message {
 }
 
 const ChatInterface: React.FC = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
-  const enrichedProfile = location.state?.enrichedProfile as EnrichedTasteProfile;
+  // Get enriched profile from sessionStorage since wouter doesn't have location.state
+  const enrichedProfile = JSON.parse(sessionStorage.getItem('enrichedProfile') || 'null') as EnrichedTasteProfile;
 
   useEffect(() => {
     if (!enrichedProfile) {
-      navigate('/quiz');
+      setLocation('/quiz');
       return;
     }
 
@@ -35,7 +35,7 @@ const ChatInterface: React.FC = () => {
       timestamp: new Date()
     };
     setMessages([welcomeMessage]);
-  }, [enrichedProfile, navigate]);
+  }, [enrichedProfile, setLocation]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -84,7 +84,7 @@ const ChatInterface: React.FC = () => {
       {/* Header */}
       <div className="bg-white/95 backdrop-blur-lg shadow-lg p-4 flex items-center justify-between border-b border-white/20">
         <button
-          onClick={() => navigate('/quiz/results')}
+          onClick={() => setLocation('/quiz/results')}
           className="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
         >
           <ArrowLeft className="w-4 h-4" />

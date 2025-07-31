@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'wouter';
 import { Sparkles, MessageCircle, Loader } from 'lucide-react';
 import { TasteProfile, EnrichedTasteProfile } from '../../types/taste';
 import CulturalDNACard from '../CulturalDNACard';
@@ -11,7 +11,7 @@ interface QuizResultsProps {
 const QuizResults: React.FC<QuizResultsProps> = ({ tasteProfile }) => {
   const [enrichedProfile, setEnrichedProfile] = useState<EnrichedTasteProfile | null>(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     // Simulate API call to enrich taste profile with Qloo data
@@ -42,8 +42,9 @@ const QuizResults: React.FC<QuizResultsProps> = ({ tasteProfile }) => {
   }, [tasteProfile]);
 
   const handleStartChat = () => {
-    // Pass enriched profile to chat interface
-    navigate('/chat', { state: { enrichedProfile } });
+    // Store enriched profile in sessionStorage since wouter doesn't support state
+    sessionStorage.setItem('enrichedProfile', JSON.stringify(enrichedProfile));
+    setLocation('/chat');
   };
 
   if (loading) {

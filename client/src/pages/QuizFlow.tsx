@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Router, Route, useLocation } from 'wouter';
 import QuizStart from '../components/quiz/QuizStart';
 import MoviesQuiz from '../components/quiz/MoviesQuiz';
 import MusicQuiz from '../components/quiz/MusicQuiz';
@@ -25,60 +25,57 @@ const QuizFlow: React.FC = () => {
     }));
   };
 
+  const [location] = useLocation();
+  
+  // Parse the nested route
+  const getQuizComponent = () => {
+    if (location === '/quiz' || location === '/quiz/') {
+      return <QuizStart />;
+    } else if (location === '/quiz/movies') {
+      return (
+        <MoviesQuiz 
+          onNext={(selections) => updateTasteProfile('movies', selections)}
+          currentSelections={tasteProfile.movies}
+        />
+      );
+    } else if (location === '/quiz/music') {
+      return (
+        <MusicQuiz 
+          onNext={(selections) => updateTasteProfile('music', selections)}
+          currentSelections={tasteProfile.music}
+        />
+      );
+    } else if (location === '/quiz/fashion') {
+      return (
+        <FashionQuiz 
+          onNext={(selections) => updateTasteProfile('fashion', selections)}
+          currentSelections={tasteProfile.fashion}
+        />
+      );
+    } else if (location === '/quiz/food') {
+      return (
+        <FoodQuiz 
+          onNext={(selections) => updateTasteProfile('food', selections)}
+          currentSelections={tasteProfile.food}
+        />
+      );
+    } else if (location === '/quiz/travel') {
+      return (
+        <TravelQuiz 
+          onNext={(selections) => updateTasteProfile('travel', selections)}
+          currentSelections={tasteProfile.travel}
+        />
+      );
+    } else if (location === '/quiz/results') {
+      return <QuizResults tasteProfile={tasteProfile} />;
+    } else {
+      return <QuizStart />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800">
-      <Routes>
-        <Route path="/" element={<QuizStart />} />
-        <Route 
-          path="/movies" 
-          element={
-            <MoviesQuiz 
-              onNext={(selections) => updateTasteProfile('movies', selections)}
-              currentSelections={tasteProfile.movies}
-            />
-          } 
-        />
-        <Route 
-          path="/music" 
-          element={
-            <MusicQuiz 
-              onNext={(selections) => updateTasteProfile('music', selections)}
-              currentSelections={tasteProfile.music}
-            />
-          } 
-        />
-        <Route 
-          path="/fashion" 
-          element={
-            <FashionQuiz 
-              onNext={(selections) => updateTasteProfile('fashion', selections)}
-              currentSelections={tasteProfile.fashion}
-            />
-          } 
-        />
-        <Route 
-          path="/food" 
-          element={
-            <FoodQuiz 
-              onNext={(selections) => updateTasteProfile('food', selections)}
-              currentSelections={tasteProfile.food}
-            />
-          } 
-        />
-        <Route 
-          path="/travel" 
-          element={
-            <TravelQuiz 
-              onNext={(selections) => updateTasteProfile('travel', selections)}
-              currentSelections={tasteProfile.travel}
-            />
-          } 
-        />
-        <Route 
-          path="/results" 
-          element={<QuizResults tasteProfile={tasteProfile} />} 
-        />
-      </Routes>
+      {getQuizComponent()}
     </div>
   );
 };

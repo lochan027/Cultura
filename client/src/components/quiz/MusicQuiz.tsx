@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation } from 'wouter';
 import { Check, ArrowRight } from 'lucide-react';
 import { QuizOption } from '../../types/taste';
 import QuizLayout from './QuizLayout';
@@ -34,7 +34,7 @@ interface MusicQuizProps {
 const MusicQuiz: React.FC<MusicQuizProps> = ({ onNext, currentSelections }) => {
   const [selectedArtists, setSelectedArtists] = useState<string[]>(currentSelections);
   const [showAll, setShowAll] = useState(false);
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   const displayedArtists = showAll ? musicOptions : musicOptions.slice(0, 8);
 
@@ -50,7 +50,7 @@ const MusicQuiz: React.FC<MusicQuizProps> = ({ onNext, currentSelections }) => {
 
   const handleNext = () => {
     onNext(selectedArtists);
-    navigate('/quiz/fashion');
+    setLocation('/quiz/fashion');
   };
 
   return (
